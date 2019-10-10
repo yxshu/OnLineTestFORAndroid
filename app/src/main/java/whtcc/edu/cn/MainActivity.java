@@ -6,7 +6,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import whtcc.edu.cn.R;
 import whtcc.edu.cn.define_widget.Btn_certification;
 import whtcc.edu.cn.define_widget.Btn_qualification;
 

@@ -1,4 +1,4 @@
-<resources  xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
+<resources >
     <string name="app_name">海员通</string>
     <string name="url">www.baidu.com</string>
     <string name="qualification">海船船员适任证（大证）</string>

@@ -7,7 +7,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CatalogActivity extends AppCompatActivity {
-    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +14,7 @@ public class CatalogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_catalog);
         Intent intent = getIntent();
         int subject = intent.getIntExtra(this.getString(R.string.subject), R.string.error);
-        tv = findViewById(R.id.textView);
+        TextView tv = findViewById(R.id.textView);
         tv.setText(String.valueOf(subject));
     }
 }
