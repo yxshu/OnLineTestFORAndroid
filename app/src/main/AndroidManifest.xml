@@ -10,13 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <!--            由于类继承自AppCompatActivity而不是activity,所有没有全屏模式，这里使用自定义的全屏样式-->
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/myAppCompatFullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CatalogActivity" />
+        <activity
+            android:name=".CatalogActivity"
+            android:theme="@style/myAppCompatFullScreen" />
     </application>
 
 </manifest>
