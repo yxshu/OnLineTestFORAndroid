@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/title" />
+
+        <TextView
+            android:id="@+id/qualification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:text="@string/qualification"
+            android:textColor="@color/maincolor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:padding="10dp">
+            <!--第一行，此链有三个元素，
+            将各元素width设置为0dp后，可以在每个元素中设置水平权重：layout_constraintHorizontal_weight
+            每行三个-->
+            <com.example.myapplication.define_widget.Btn_qualification
+                android:id="@+id/btn_captain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_eng_chief"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_chief"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.myapplication.define_widget.Btn_qualification
+                android:id="@+id/btn_chief"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_eng_second"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/btn_captain"
+                app:layout_constraintRight_toLeftOf="@id/btn_third"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.example.myapplication.define_widget.Btn_qualification
+                android:id="@+id/btn_third"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_eng_forth"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/btn_chief"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--第二行-->
+            <com.example.myapplication.define_widget.Btn_qualification
+                android:id="@+id/btn_eng_chief"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_sailer"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_eng_second"
+                app:layout_constraintTop_toBottomOf="@id/btn_captain" />
+
+            <com.example.myapplication.define_widget.Btn_qualification
+                android:id="@+id/btn_eng_second"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_motor"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/btn_eng_chief"
+                app:layout_constraintRight_toLeftOf="@id/btn_eng_forth"
+                app:layout_constraintTop_toBottomOf="@id/btn_chief" />
+
+            <com.example.myapplication.define_widget.Btn_qualification
+                android:id="@+id/btn_eng_forth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_GMDSS"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/btn_eng_second"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_third" />
+            <!--   第三行-->
+            <com.example.myapplication.define_widget.Btn_qualification
+                android:id="@+id/btn_sailer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_motor"
+                app:layout_constraintTop_toBottomOf="@id/btn_eng_chief" />
+
+            <com.example.myapplication.define_widget.Btn_qualification
+                android:id="@+id/btn_motor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/btn_sailer"
+                app:layout_constraintRight_toLeftOf="@id/btn_GMDSS"
+                app:layout_constraintTop_toBottomOf="@id/btn_eng_second" />
+
+
+            <com.example.myapplication.define_widget.Btn_qualification
+                android:id="@+id/btn_GMDSS"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/btn_motor"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_eng_forth" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/certification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+
+            android:text="@string/certificate"
+            android:textColor="@color/maincolor"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <!--第一行，每行四个-->
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/Z01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/z01"
+                app:layout_constraintBottom_toTopOf="@id/Z06"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/Z02"
+                app:layout_constraintTop_toTopOf="parent"></com.example.myapplication.define_widget.Btn_certification>
+
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/Z02"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/z02"
+                app:layout_constraintBottom_toTopOf="@id/Z078"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/Z01"
+                app:layout_constraintRight_toLeftOf="@id/Z04"
+                app:layout_constraintTop_toTopOf="parent"></com.example.myapplication.define_widget.Btn_certification>
+
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/Z04"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/z04"
+                app:layout_constraintBottom_toTopOf="@id/Z09"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/Z02"
+                app:layout_constraintRight_toLeftOf="@id/Z05"
+                app:layout_constraintTop_toTopOf="parent"></com.example.myapplication.define_widget.Btn_certification>
+
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/Z05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/z05"
+                app:layout_constraintBottom_toTopOf="@id/T01"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/Z04"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></com.example.myapplication.define_widget.Btn_certification>
+            <!--第二行-->
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/Z06"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/z06"
+                app:layout_constraintBottom_toTopOf="@id/T02"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/Z078"
+                app:layout_constraintTop_toBottomOf="@id/Z01"></com.example.myapplication.define_widget.Btn_certification>
+
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/Z078"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/z078"
+                app:layout_constraintBottom_toTopOf="@id/T03"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/Z06"
+                app:layout_constraintRight_toLeftOf="@id/Z09"
+                app:layout_constraintTop_toBottomOf="@id/Z02"></com.example.myapplication.define_widget.Btn_certification>
+
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/Z09"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/z09"
+                app:layout_constraintBottom_toTopOf="@id/T06"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/Z078"
+                app:layout_constraintRight_toLeftOf="@id/T01"
+                app:layout_constraintTop_toBottomOf="@id/Z04"></com.example.myapplication.define_widget.Btn_certification>
+
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/T01"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/t01"
+                app:layout_constraintBottom_toTopOf="@id/T07"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/Z09"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Z05"></com.example.myapplication.define_widget.Btn_certification>
+            <!--第三行-->
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/T02"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/t02"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/T03"
+                app:layout_constraintTop_toBottomOf="@id/Z06"></com.example.myapplication.define_widget.Btn_certification>
+
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/T03"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/t03"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/T02"
+                app:layout_constraintRight_toLeftOf="@id/T06"
+                app:layout_constraintTop_toBottomOf="@id/Z078"></com.example.myapplication.define_widget.Btn_certification>
+
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/T06"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/t06"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/T03"
+                app:layout_constraintRight_toLeftOf="@id/T07"
+                app:layout_constraintTop_toBottomOf="@id/Z09"></com.example.myapplication.define_widget.Btn_certification>
+
+            <com.example.myapplication.define_widget.Btn_certification
+                android:id="@+id/T07"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@id/T06"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/T01"></com.example.myapplication.define_widget.Btn_certification>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>
