@@ -137,11 +137,9 @@ public class MainActivity extends AppCompatActivity {
 
     class onMyClickListener implements View.OnClickListener {
         public final String subject;
-
         onMyClickListener(String subject) {
             this.subject = subject;
         }
-
         @Override
         public void onClick(View v) {
             int id = v.getId();
