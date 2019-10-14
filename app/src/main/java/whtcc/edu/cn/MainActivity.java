@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     class onMyClickListener implements View.OnClickListener {
-        public final String subject;
+        final String subject;
         onMyClickListener(String subject) {
             this.subject = subject;
         }
