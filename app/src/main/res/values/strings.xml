@@ -49,4 +49,6 @@
     <string name="position">岗位</string>
     <string name="subject">subject</string>
     <string name="error">error</string>
+    <string name="textview">TextView</string>
+    <string name="currentposition">currentposition</string>
 </resources>
