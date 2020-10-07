@@ -6,13 +6,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alibaba.fastjson.JSON;
-import com.google.gson.Gson;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import whtcc.edu.cn.Models.Question;
 
 public class CatalogActivity extends AppCompatActivity {
 
@@ -28,15 +23,11 @@ public class CatalogActivity extends AppCompatActivity {
         TextView tv = findViewById(R.id.textView);
         final TextView tv2 = findViewById(R.id.textView2);
         tv.setText(subject);
-
         try {
             JSONObject jsonObject = new JSONObject(JsonQuestion);
             tv2.setText(jsonObject.getString("QuestionTitle"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-
     }
 }
