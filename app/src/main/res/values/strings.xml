@@ -1,6 +1,7 @@
 <resources >
     <string name="app_name">海员通</string>
     <string name="url">https://www.baidu.com</string>
+    <string name="appConfig">assets/appConfig.properties</string>
     <string name="qualification">海船船员适任证（大证）</string>
     <string name="certificate">海船船员培训合格证（小证）</string>
     <string name="captain">船长</string>

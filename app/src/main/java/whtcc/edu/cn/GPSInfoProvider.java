@@ -1,8 +1,5 @@
 package whtcc.edu.cn;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -12,7 +9,10 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+public class GPSInfoProvider extends AppCompatActivity {
 
     private TextView text;  //定义用于显示LocationProvider的TextView组件
 

@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Btn_certification btnCertificationZ01 = findViewById(R.id.Z01);
         btnCertificationZ01.setImageViewResource(R.drawable.icon_z01);
         btnCertificationZ01.setTextViewCode(R.string.Z01);
