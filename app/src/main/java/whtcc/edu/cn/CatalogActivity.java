@@ -35,7 +35,6 @@ public class CatalogActivity extends AppCompatActivity {
         TextView tv2 = findViewById(R.id.textView2);
         tv.setText(subject);
         try {
-
             JSONObject jsonObject = new JSONObject(JsonQuestion);
             tv2.setText(jsonObject.getString("QuestionTitle"));
         } catch (JSONException e) {
