@@ -50,6 +50,6 @@
     <string name="subject">subject</string>
     <string name="error">error</string>
     <string name="textview">TextView</string>
-    <string name="currentposition">currentposition</string>
-    <stirng name="currenttime">2020年10月16日</stirng>
+    <string name="currentposition">显示当前位置</string>
+    <string name="currenttime">2020年10月18日</string>
 </resources>

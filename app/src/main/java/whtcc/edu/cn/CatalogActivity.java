@@ -3,12 +3,14 @@ package whtcc.edu.cn;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import android.preference.Preference;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +36,7 @@ public class CatalogActivity extends AppCompatActivity {
         TextView tv = findViewById(R.id.textView);
         TextView tv2 = findViewById(R.id.textView2);
         tv.setText(subject);
+        SharedPreferences preference = this.getSharedPreferences("", MODE_PRIVATE);
         try {
             JSONObject jsonObject = new JSONObject(JsonQuestion);
             tv2.setText(jsonObject.getString("QuestionTitle"));
