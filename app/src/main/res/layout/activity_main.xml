@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,12 +26,12 @@
             android:layout_weight="1"
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
-            android:text="@string/qualification"
             android:textColor="@color/maincolor"
             android:textSize="14sp"
             android:textStyle="bold" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_qualification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="9"
@@ -40,39 +39,40 @@
             <!--第一行，此链有三个元素，
             将各元素width设置为0dp后，可以在每个元素中设置水平权重：layout_constraintHorizontal_weight
             每行三个-->
-            <whtcc.edu.cn.define_widget.Btn_qualification
-                android:id="@+id/btn_captain"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                app:layout_constraintBottom_toTopOf="@id/btn_eng_chief"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/btn_chief"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!-- <whtcc.edu.cn.define_widget.Btn_qualification
+                 android:id="@+id/btn_captain"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:padding="3dp"
+                 app:layout_constraintBottom_toTopOf="@id/btn_eng_chief"
+                 app:layout_constraintHorizontal_weight="1"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toLeftOf="@id/btn_chief"
+                 app:layout_constraintTop_toTopOf="parent" />
 
-            <whtcc.edu.cn.define_widget.Btn_qualification
-                android:id="@+id/btn_chief"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                app:layout_constraintBottom_toTopOf="@id/btn_eng_second"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@id/btn_captain"
-                app:layout_constraintRight_toLeftOf="@id/btn_third"
-                app:layout_constraintTop_toTopOf="parent" />
+             <whtcc.edu.cn.define_widget.Btn_qualification
+                 android:id="@+id/btn_chief"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:padding="3dp"
+                 app:layout_constraintBottom_toTopOf="@id/btn_eng_second"
+                 app:layout_constraintHorizontal_weight="1"
+                 app:layout_constraintLeft_toRightOf="@id/btn_captain"
+                 app:layout_constraintRight_toLeftOf="@id/btn_third"
+                 app:layout_constraintTop_toTopOf="parent" />
 
-            <whtcc.edu.cn.define_widget.Btn_qualification
-                android:id="@+id/btn_third"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                app:layout_constraintBottom_toTopOf="@id/btn_eng_forth"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@id/btn_chief"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <!--第二行-->
+             <whtcc.edu.cn.define_widget.Btn_qualification
+                 android:id="@+id/btn_third"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:padding="3dp"
+                 app:layout_constraintBottom_toTopOf="@id/btn_eng_forth"
+                 app:layout_constraintHorizontal_weight="1"
+                 app:layout_constraintLeft_toRightOf="@id/btn_chief"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintTop_toTopOf="parent" />
+                 -->
+            <!--第二行
             <whtcc.edu.cn.define_widget.Btn_qualification
                 android:id="@+id/btn_eng_chief"
                 android:layout_width="0dp"
@@ -105,7 +105,8 @@
                 app:layout_constraintLeft_toRightOf="@id/btn_eng_second"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_third" />
-            <!--   第三行-->
+                -->
+            <!--   第三行
             <whtcc.edu.cn.define_widget.Btn_qualification
                 android:id="@+id/btn_sailer"
                 android:layout_width="0dp"
@@ -139,6 +140,7 @@
                 app:layout_constraintLeft_toRightOf="@id/btn_motor"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_eng_forth" />
+                -->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -148,17 +150,16 @@
             android:layout_weight="1"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
-
-            android:text="@string/certificate"
             android:textColor="@color/maincolor"
             android:textSize="14sp"
             android:textStyle="bold" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_certification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp">
-            <!--第一行，每行四个-->
+            <!--第一行，每行四个
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/Z01"
                 android:layout_width="0dp"
@@ -168,7 +169,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/Z02"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/Z02"
@@ -179,7 +180,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/Z01"
                 app:layout_constraintRight_toLeftOf="@id/Z04"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/Z04"
@@ -190,7 +191,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/Z02"
                 app:layout_constraintRight_toLeftOf="@id/Z05"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/Z05"
@@ -201,8 +202,9 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/Z04"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-            <!--第二行-->
+                app:layout_constraintTop_toTopOf="parent" />
+                -->
+            <!--第二行
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/Z06"
                 android:layout_width="0dp"
@@ -212,7 +214,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/Z078"
-                app:layout_constraintTop_toBottomOf="@id/Z01"/>
+                app:layout_constraintTop_toBottomOf="@id/Z01" />
 
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/Z078"
@@ -223,7 +225,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/Z06"
                 app:layout_constraintRight_toLeftOf="@id/Z09"
-                app:layout_constraintTop_toBottomOf="@id/Z02"/>
+                app:layout_constraintTop_toBottomOf="@id/Z02" />
 
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/Z09"
@@ -234,7 +236,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/Z078"
                 app:layout_constraintRight_toLeftOf="@id/T01"
-                app:layout_constraintTop_toBottomOf="@id/Z04"/>
+                app:layout_constraintTop_toBottomOf="@id/Z04" />
 
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/T01"
@@ -245,8 +247,9 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/Z09"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Z05"/>
-            <!--第三行-->
+                app:layout_constraintTop_toBottomOf="@+id/Z05" />
+                -->
+            <!--第三行
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/T02"
                 android:layout_width="0dp"
@@ -256,7 +259,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/T03"
-                app:layout_constraintTop_toBottomOf="@id/Z06"/>
+                app:layout_constraintTop_toBottomOf="@id/Z06" />
 
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/T03"
@@ -267,7 +270,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/T02"
                 app:layout_constraintRight_toLeftOf="@id/T06"
-                app:layout_constraintTop_toBottomOf="@id/Z078"/>
+                app:layout_constraintTop_toBottomOf="@id/Z078" />
 
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/T06"
@@ -278,7 +281,7 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/T03"
                 app:layout_constraintRight_toLeftOf="@id/T07"
-                app:layout_constraintTop_toBottomOf="@id/Z09"/>
+                app:layout_constraintTop_toBottomOf="@id/Z09" />
 
             <whtcc.edu.cn.define_widget.Btn_certification
                 android:id="@+id/T07"
@@ -288,8 +291,8 @@
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toRightOf="@id/T06"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/T01"/>
-
+                app:layout_constraintTop_toBottomOf="@id/T01" />
+            -->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

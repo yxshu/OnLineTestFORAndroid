@@ -1,9 +1,13 @@
-package whtcc.edu.cn;
+package whtcc.edu.cn.Util;
 
+import android.content.Context;
+
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Properties;
 
@@ -11,13 +15,33 @@ import java.util.Properties;
 public class PropertiesUtil {
 
     private String properiesName = "";
+    private Context context;
+    private Properties properties;
 
     public PropertiesUtil() {
-
     }
 
-    public PropertiesUtil(String fileName) {
+    public PropertiesUtil(String fileName, Context context) {
         this.properiesName = fileName;
+        this.context = context;
+        InputStream is = null;
+        BufferedReader bufferedReader = null;
+        try {
+            is = context.getAssets().open(properiesName);
+            bufferedReader = new BufferedReader(new InputStreamReader(is));
+            properties = new Properties();
+            properties.load(is);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+                //bufferedReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -27,23 +51,7 @@ public class PropertiesUtil {
      * @return
      */
     public String readProperty(String key) {
-        String value = "";
-        InputStream is = null;
-        try {
-            is = PropertiesUtil.class.getClassLoader().getResourceAsStream(properiesName);
-            Properties p = new Properties();
-            p.load(is);
-            value = p.getProperty(key);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return value;
+        return properties.getProperty(key);
     }
 
     /**
@@ -52,21 +60,7 @@ public class PropertiesUtil {
      * @return
      */
     public Properties getProperties() {
-        Properties p = new Properties();
-        InputStream is = null;
-        try {
-            is = PropertiesUtil.class.getClassLoader().getResourceAsStream(properiesName);
-            p.load(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return p;
+        return properties;
     }
 
     /**
@@ -104,16 +98,4 @@ public class PropertiesUtil {
         }
 
     }
-/*
-    public static void main(String[] args) {
-        // sysConfig.properties(配置文件)
-        PropertiesUtil p = new PropertiesUtil("sysConfig.properties");
-        System.out.println(p.getProperties().get("db.url"));
-        System.out.println(p.readProperty("db.url"));
-        PropertiesUtil q = new PropertiesUtil("resources/sysConfig.properties");
-        q.writeProperty("myUtils", "wang");
-        System.exit(0);
-    }
-    */
-
 }

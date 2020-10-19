@@ -1,0 +1,25 @@
+Qualification={\
+  "captain":["icon_title","\u8239\u957F","\u8239\u957F"],\
+  "chief":["icon_title","\u5927\u526F","\u5927\u526F"],\
+  "third":["icon_title","\u4E09\u526F","\u4E09\u526F"],\
+  "eng_chief":["icon_title","\u8F6E\u673A\u957F","\u8F6E\u673A\u957F"],\
+  "eng_second":["icon_title","\u5927\u7BA1\u8F6E","\u5927\u7BA1\u8F6E"],\
+  "eng_forth":["icon_title","\u4E09\u7BA1\u8F6E","\u4E09\u7BA1\u8F6E"],\
+  "sailer":["icon_title","\u05B5\u503C\u73ED\u6C34\u624B","\u05B5\u503C\u73ED\u6C34\u624B"],\
+  "motor":["icon_title","\u05B5\u503C\u73ED\u673A\u5DE5","\u05B5\u503C\u73ED\u673A\u5DE5"],\
+  "GMDSS":["icon_title","GMDSS","GMDSS"]\
+  }
+Certificate={\
+  "Z01":["icon_z01","Z01","\u57FA\u672C\u5B89\u5168","Z01"],\
+  "Z02":["icon_Z02","Z02","\u7CBE\u901A\u8247\u7B4F","Z02"],\
+  "Z04":["icon_Z04","Z04","\u9AD8\u7EA7\u6D88\u9632","Z04"],\
+  "Z05":["icon_Z05","Z05","\u7CBE\u901A\u6025\u6551","Z05"],\
+  "Z06":["icon_Z06","Z06","\u8239\u4E0A\u533B\u62A4","Z06"],\
+  "Z07/8":["icon_Z07/8","Z07/8","\u4FDD\u5B89\u610F\u8BC6\u4E0E\u804C\u8D23","Z07/8"],\
+  "Z09":["icon_Z09","Z09","\u4FDD\u5B89\u5458","Z09"],\
+  "T01":["icon_T01","T01","\u6CB9\u5316\u57FA\u672C","T01"],\
+  "T02":["icon_T02","T02","\u6CB9\u8239\u9AD8\u7EA7","T02"],\
+  "T03":["icon_T03","T03","\u5316\u5B66\u54C1\u9AD8\u7EA7","T03"],\
+  "T06":["icon_T06","T06","\u5BA2\u8239","T06"],\
+  "T07":["icon_T07","T07","\u5927\u578B\u8239","T07"]\
+  }

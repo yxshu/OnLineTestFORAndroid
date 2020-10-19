@@ -3,11 +3,12 @@ package whtcc.edu.cn;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import whtcc.edu.cn.define_widget.Btn_certification;
-import whtcc.edu.cn.define_widget.Btn_qualification;
+import whtcc.edu.cn.Util.PropertiesUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +17,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Btn_certification btnCertificationZ01 = findViewById(R.id.Z01);
+        TextView tx_qualification = findViewById(R.id.qualification);
+        TextView tx_certification = findViewById(R.id.certification);
+        tx_qualification.setText(R.string.qualification);//标题-大证
+        tx_certification.setText(R.string.certificate);//标题-小证
+        ConstraintLayout constraintLayout_qualification = findViewById(R.id.constraintLayout_qualification);//相对布局-大证
+        ConstraintLayout constraintLayout_certification = findViewById(R.id.constraintLayout_certification);//相对布局-小证
+        PropertiesUtil propertiesUtil = new PropertiesUtil("AppConfig", getApplicationContext());
+        String str_Qualification = propertiesUtil.readProperty("Qualification");
+        String str_Certification = propertiesUtil.readProperty("Certificate");
+        //tx_certification.setText(str_Certification);
+       /* Btn_certification btnCertificationZ01 = findViewById(R.id.Z01);
         btnCertificationZ01.setImageViewResource(R.drawable.icon_z01);
         btnCertificationZ01.setTextViewCode(R.string.Z01);
         btnCertificationZ01.setTextViewDescrip(R.string.z01);
@@ -131,14 +142,17 @@ public class MainActivity extends AppCompatActivity {
         Btn_qualification btnQualificationGMDSS = findViewById(R.id.btn_GMDSS);
         btnQualificationGMDSS.setImageViewResource(R.drawable.icon_title);
         btnQualificationGMDSS.setTextViewText(R.string.gmdss);
-        btnQualificationGMDSS.setOnClickListener(new onMyClickListener(getApplicationContext().getResources().getString(R.string.gmdss)));
+        btnQualificationGMDSS.setOnClickListener(new onMyClickListener(getApplicationContext().getResources().getString(R.string.gmdss)));*/
     }
 
+    /**/
     class onMyClickListener implements View.OnClickListener {
         final String subject;
+
         onMyClickListener(String subject) {
             this.subject = subject;
         }
+
         @Override
         public void onClick(View v) {
             int id = v.getId();
