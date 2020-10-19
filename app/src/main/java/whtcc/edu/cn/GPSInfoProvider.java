@@ -1,7 +1,6 @@
 package whtcc.edu.cn;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -23,7 +22,6 @@ public class GPSInfoProvider extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);   //设置全屏显示
-
         text = (TextView) findViewById(R.id.textView3);  //获取显示Location信息的TextView组件
         //获取系统的LocationManager对象
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -97,6 +95,6 @@ public class GPSInfoProvider extends AppCompatActivity {
 //            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH mm ss");    //设置日期时间格式
 //            stringBuilder.append(dateFormat.format(new Date(location.getTime())));
             text.setText(stringBuilder);            //显示获取的信息
-        } else text.setText("没有获取到GPS信息");
+        } else text.setText(R.string.dafaultGPSmessage);
     }
 }
