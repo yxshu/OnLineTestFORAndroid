@@ -1,6 +1,7 @@
 <resources >
     <string name="app_name">海员通</string>
     <string name="url">https://www.baidu.com</string>
+    <string name="appConfig">assets/appConfig.properties</string>
     <string name="qualification">海船船员适任证（大证）</string>
     <string name="certificate">海船船员培训合格证（小证）</string>
     <string name="captain">船长</string>
@@ -50,6 +51,7 @@
     <string name="subject">subject</string>
     <string name="error">error</string>
     <string name="textview">TextView</string>
-    <string name="currentposition">显示当前位置</string>
-    <string name="currenttime">2020年10月18日</string>
+    <string name="currentposition">currentposition</string>
+    <string name="currenttime">2020年10月16日</string>
+    <string name="dafaultGPSmessage">没有获取到GPS信息</string>
 </resources>
