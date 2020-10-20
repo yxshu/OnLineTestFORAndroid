@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         tx_certification.setText(R.string.certificate);//标题-小证
         ConstraintLayout constraintLayout_qualification = findViewById(R.id.constraintLayout_qualification);//相对布局-大证
         ConstraintLayout constraintLayout_certification = findViewById(R.id.constraintLayout_certification);//相对布局-小证
-        PropertiesUtil propertiesUtil = new PropertiesUtil("AppConfig", getApplicationContext());
-        String str_Qualification = propertiesUtil.readProperty("Qualification");
-        String str_Certification = propertiesUtil.readProperty("Certificate");
+        //PropertiesUtil propertiesUtil = new PropertiesUtil("AppConfig", getApplicationContext());
+        //String str_Qualification = propertiesUtil.readProperty("Qualification");
+        //String str_Certification = propertiesUtil.readProperty("Certificate");
         //tx_certification.setText(str_Certification);
        /* Btn_certification btnCertificationZ01 = findViewById(R.id.Z01);
         btnCertificationZ01.setImageViewResource(R.drawable.icon_z01);

@@ -25,10 +25,8 @@ public class PropertiesUtil {
         this.properiesName = fileName;
         this.context = context;
         InputStream is = null;
-        BufferedReader bufferedReader = null;
         try {
             is = context.getAssets().open(properiesName);
-            bufferedReader = new BufferedReader(new InputStreamReader(is));
             properties = new Properties();
             properties.load(is);
 
@@ -37,7 +35,6 @@ public class PropertiesUtil {
         } finally {
             try {
                 is.close();
-                //bufferedReader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
