@@ -1,5 +1,6 @@
 package whtcc.edu.cn;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +9,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
+
 import whtcc.edu.cn.Util.PropertiesUtil;
+import whtcc.edu.cn.define_widget.Btn_certification;
+import whtcc.edu.cn.define_widget.Btn_qualification;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,17 +31,48 @@ public class MainActivity extends AppCompatActivity {
         tx_certification.setText(R.string.certificate);//标题-小证
         ConstraintLayout constraintLayout_qualification = findViewById(R.id.constraintLayout_qualification);//相对布局-大证
         ConstraintLayout constraintLayout_certification = findViewById(R.id.constraintLayout_certification);//相对布局-小证
-        //PropertiesUtil propertiesUtil = new PropertiesUtil("AppConfig", getApplicationContext());
-        //String str_Qualification = propertiesUtil.readProperty("Qualification");
-        //String str_Certification = propertiesUtil.readProperty("Certificate");
-        //tx_certification.setText(str_Certification);
-       /* Btn_certification btnCertificationZ01 = findViewById(R.id.Z01);
+        PropertiesUtil propertiesUtil = new PropertiesUtil("AppConfig", getApplicationContext());
+        String str_Qualification = propertiesUtil.readProperty("Qualification");
+        String str_Certification = propertiesUtil.readProperty("Certificate");
+        Btn_certification[] btn_certifications;
+        Btn_qualification[] btn_qualifications;
+        try {
+            JSONObject jsonQualification = new JSONObject(str_Qualification);// "captain":["icon_title","船长","船长"],
+            JSONObject jsonCertification = new JSONObject(str_Certification);//"Z01":["icon_z01","Z01","基本安全","Z01"],
+
+            btn_qualifications = new Btn_qualification[jsonQualification.length()];
+            for (int i = 0; i < jsonQualification.length(); i++) {
+                String key = jsonQualification.keys()[i];
+                Btn_qualification btn_qualification = new Btn_qualification(getApplicationContext());
+                int imageID = getResources().getIdentifier("", "drawable", getPackageName());
+                int textID = getResources().getIdentifier("", "strings", getPackageName());
+                int valueID = getResources().getIdentifier("", "strings", getPackageName());
+                btn_qualification.setImageViewResource(imageID);
+                btn_qualification.setTextViewText(textID);
+                btn_qualification.setOnClickListener(new onMyClickListener(getResources().getString(valueID)));
+                btn_qualifications[0] = btn_qualification;
+                //btn_qualification.setImageViewResource(resID);
+            }
+            btn_certifications = new Btn_certification[jsonCertification.length()];
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+       /*
+        Btn_qualification btnQualificationCaption = findViewById(R.id.btn_captain);
+        btnQualificationCaption.setImageViewResource(R.drawable.icon_title);
+        btnQualificationCaption.setTextViewText(R.string.captain);
+        btnQualificationCaption.setOnClickListener(new onMyClickListener(getApplicationContext().getResources().getString(R.string.captain)));
+
+        Btn_certification btnCertificationZ01 = findViewById(R.id.Z01);
         btnCertificationZ01.setImageViewResource(R.drawable.icon_z01);
         btnCertificationZ01.setTextViewCode(R.string.Z01);
         btnCertificationZ01.setTextViewDescrip(R.string.z01);
         btnCertificationZ01.setOnClickListener(new onMyClickListener(getApplicationContext().getResources().getString(R.string.Z01)));
+*/
 
-        Btn_certification btnCertificationZ02 = findViewById(R.id.Z02);
+        /*Btn_certification btnCertificationZ02 = findViewById(R.id.Z02);
         btnCertificationZ02.setImageViewResource(R.drawable.icon_z02);
         btnCertificationZ02.setTextViewCode(R.string.Z02);
         btnCertificationZ02.setTextViewDescrip(R.string.z02);
