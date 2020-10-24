@@ -1,10 +1,8 @@
 package whtcc.edu.cn;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,15 +12,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
-
 import whtcc.edu.cn.Util.PropertiesUtil;
 import whtcc.edu.cn.define_widget.Btn_certification;
 import whtcc.edu.cn.define_widget.Btn_qualification;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tx_qualification, tx_certification;
     private ConstraintLayout constraintLayout_qualification, constraintLayout_certification;
 
     private ConstraintLayout.LayoutParams setLayoutParams(int margin, int column, ConstraintLayout parent, View[] views, int i) {
@@ -44,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         return layoutParams;
     }
 
-    ;
 
     private void initView() {
         PropertiesUtil propertiesUtil = new PropertiesUtil("AppConfig", getApplicationContext());
@@ -85,12 +79,13 @@ public class MainActivity extends AppCompatActivity {
                 Btn_certification btn_certification = new Btn_certification(getApplicationContext());
                 int id = getResources().getIdentifier(certification.getString("value_id"), "id", getPackageName());
                 int imageID = getResources().getIdentifier(certification.getString("draw_imgview"), "drawable", getPackageName());
+                btn_certification.setId(id);
                 btn_certification.setImageViewResource(imageID);
                 btn_certification.setTextViewCode(certification.getString("tv_text"));
                 btn_certification.setTextViewDescrip(certification.getString("tv_descrip"));
                 btn_certification.setOnClickListener(new onMyClickListener(certification.getString("value_id")));
                 btn_certifications[j] = btn_certification;
-                btn_certification.setLayoutParams(setLayoutParams(10, Column_Certification, constraintLayout_certification, btn_certifications, j));
+                btn_certification.setLayoutParams(setLayoutParams(0, Column_Certification, constraintLayout_certification, btn_certifications, j));
 
                 constraintLayout_certification.addView(btn_certification);
             }
@@ -104,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tx_qualification = findViewById(R.id.qualification);
-        tx_certification = findViewById(R.id.certification);
+        TextView tx_qualification = findViewById(R.id.qualification);
+        TextView tx_certification = findViewById(R.id.certification);
         tx_qualification.setText(R.string.qualification);//标题-大证
         tx_certification.setText(R.string.certificate);//标题-小证
         constraintLayout_qualification = findViewById(R.id.constraintLayout_qualification);//相对布局-大证
