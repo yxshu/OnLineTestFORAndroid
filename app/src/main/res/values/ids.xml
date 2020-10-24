@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="captain" type="id" />
+    <item name="chief" type="id" />
+    <item name="third" type="id" />
+    <item name="eng_chief" type="id" />
+    <item name="eng_second" type="id" />
+    <item name="eng_forth" type="id" />
+    <item name="sailer" type="id" />
+    <item name="motor" type="id" />
+    <item name="GMDSS" type="id" />
+    <item name="Z01" type="id" />
+    <item name="Z02" type="id" />
+    <item name="Z04" type="id" />
+    <item name="Z05" type="id" />
+    <item name="Z06" type="id" />
+    <item name="Z07_8" type="id" />
+    <item name="Z09" type="id" />
+    <item name="T01" type="id" />
+    <item name="T02" type="id" />
+    <item name="T03" type="id" />
+    <item name="T06" type="id" />
+    <item name="T07" type="id" />
+
+</resources>
+
+
+
+
+
+
+
+

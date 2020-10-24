@@ -32,7 +32,7 @@ public class Btn_qualification extends LinearLayout {
         iv_positionicon.setImageResource(resid);
     }
 
-    public void setTextViewText(int resid) {
-        tv_position.setText(resid);
+    public void setTextViewText(String text) {
+        tv_position.setText(text);
     }
 }

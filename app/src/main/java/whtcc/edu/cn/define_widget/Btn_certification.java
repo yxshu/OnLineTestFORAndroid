@@ -36,12 +36,14 @@ public class Btn_certification extends LinearLayout {
     public void setImageViewResource(int iconId) {
         iv_icon.setImageResource(iconId);
     }
-//设置代码 第一行灰色字体
-    public void setTextViewCode(int code) {
+
+    //设置代码 第一行灰色字体
+    public void setTextViewCode(String code) {
         tv_code.setText(code);
     }
-//设置说明 第二行黑色字体
-    public void setTextViewDescrip(int descrip) {
+
+    //设置说明 第二行黑色字体
+    public void setTextViewDescrip(String descrip) {
         tv_descrip.setText(descrip);
     }
 }
