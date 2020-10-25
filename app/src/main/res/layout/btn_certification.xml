@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
@@ -10,7 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_gravity="center"
+        android:adjustViewBounds="true"
         android:scaleType="centerInside"
+
         android:src="@drawable/icon_general" />
 
     <TextView
@@ -20,6 +23,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:padding="2dp"
+        android:singleLine="true"
         android:text="@string/code"
         android:textColor="@color/black"
         android:textStyle="bold" />
@@ -30,9 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/descrip"
-        android:textColor="@color/gray"
         android:singleLine="true"
-        android:layout_marginBottom="30dp"/>
+        android:text="@string/descrip"
+        android:textColor="@color/gray" />
 
 </LinearLayout>

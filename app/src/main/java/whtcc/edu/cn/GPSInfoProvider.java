@@ -12,6 +12,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+/**
+ *
+ */
 public class GPSInfoProvider extends AppCompatActivity {
 
     private TextView text;  //定义用于显示LocationProvider的TextView组件

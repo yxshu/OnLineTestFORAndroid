@@ -3,7 +3,8 @@
 \u7B2C\u4E00\uFF1A\u8981\u5728values/ids\u4E0B\u6DFB\u52A0id;
 \u7B2C\u4E8C\uFF1A\u8981\u5728drawable\u4E0B\u6DFB\u52A0\u56FE\u6807
 >
-Column={"Qualification":"3","Certificate":"4"}
+Column={"Qualification":"3","Certificate":"3"}
+margin={"Qualification":"10","Certificate":"10"}
 Qualification=[\
   {"value_id":"captain","draw_imgview":"icon_title","tv_text":"\u8239\u957F"},\
   {"value_id":"chief","draw_imgview":"icon_title","tv_text":"\u5927\u526F"},\

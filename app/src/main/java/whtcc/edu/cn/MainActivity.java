@@ -3,6 +3,7 @@ package whtcc.edu.cn;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,20 +17,39 @@ import whtcc.edu.cn.Util.PropertiesUtil;
 import whtcc.edu.cn.define_widget.Btn_certification;
 import whtcc.edu.cn.define_widget.Btn_qualification;
 
+/**
+ *
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout constraintLayout_qualification, constraintLayout_certification;
 
+
+    /**
+     * 设置布局参数
+     *
+     * @param margin 各控件之间的间隔
+     * @param column 总的列数
+     * @param parent 父控件
+     * @param views  总的控件
+     * @param i      当前设置的控件序号
+     * @return 设置的参数
+     */
     private ConstraintLayout.LayoutParams setLayoutParams(int margin, int column, ConstraintLayout parent, View[] views, int i) {
-        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(0, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(
+                0,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.horizontalWeight = 1;
         layoutParams.setMargins(margin, margin, margin, margin);
-        if (i % column == 0) {
-            layoutParams.startToStart = parent.getId();//第一列
+        if (i % column == 0) {//第一列
+            layoutParams.startToStart = parent.getId();
+            layoutParams.endToStart = views[i + 1].getId();
         } else if (i % column == column - 1) {//最后一列
             layoutParams.endToEnd = parent.getId();
+            layoutParams.startToEnd = views[i - 1].getId();
         } else {//其他列
-            layoutParams.leftToRight = views[i - 1].getId();
+            layoutParams.startToEnd = views[i - 1].getId();
+            layoutParams.endToStart = views[i + 1].getId();
         }
         if (i / column == 0) {//第一行
             layoutParams.topToTop = parent.getId();
@@ -45,16 +65,19 @@ public class MainActivity extends AppCompatActivity {
         String str_Qualification = propertiesUtil.readProperty("Qualification");
         String str_Certification = propertiesUtil.readProperty("Certificate");
         String column = propertiesUtil.readProperty("Column");
+        String margin = propertiesUtil.readProperty("margin");
         Btn_qualification[] btn_qualifications;//用于生成按钮的数组
         Btn_certification[] btn_certifications;
-        int Column_Qualification, Column_Certification;
+        int Column_Qualification, Column_Certification, Margin_Qualification, Margin_Certification;
         try {
             JSONArray jsonArrayQualification = new JSONArray(str_Qualification);
             JSONArray jsonArrayCertification = new JSONArray(str_Certification);
             JSONObject jsonObjectColumn = new JSONObject(column);
+            JSONObject jsonObjectmargin = new JSONObject(margin);
             Column_Qualification = jsonObjectColumn.getInt("Qualification");
             Column_Certification = jsonObjectColumn.getInt("Certificate");
-
+            Margin_Qualification = jsonObjectmargin.getInt("Qualification");
+            Margin_Certification = jsonObjectmargin.getInt("Certificate");
             btn_qualifications = new Btn_qualification[jsonArrayQualification.length()];
             for (int i = 0; i < jsonArrayQualification.length(); i++) {
                 JSONObject qualification = jsonArrayQualification.getJSONObject(i);
@@ -67,9 +90,11 @@ public class MainActivity extends AppCompatActivity {
                 btn_qualification.setTextViewText(qualification.getString("tv_text"));
                 btn_qualification.setOnClickListener(new onMyClickListener(qualification.getString("value_id")));
                 btn_qualifications[i] = btn_qualification;
-                btn_qualification.setLayoutParams(setLayoutParams(10, Column_Qualification, constraintLayout_qualification, btn_qualifications, i));
-
-                constraintLayout_qualification.addView(btn_qualification);
+                //btn_qualification.setLayoutParams(setLayoutParams(10, Column_Qualification, constraintLayout_qualification, btn_qualifications, i));
+            }
+            for (int m = 0; m < btn_qualifications.length; m++) {
+                btn_qualifications[m].setLayoutParams(setLayoutParams(Margin_Qualification, Column_Qualification, constraintLayout_qualification, btn_qualifications, m));
+                constraintLayout_qualification.addView(btn_qualifications[m]);
             }
 
             btn_certifications = new Btn_certification[jsonArrayCertification.length()];
@@ -85,9 +110,11 @@ public class MainActivity extends AppCompatActivity {
                 btn_certification.setTextViewDescrip(certification.getString("tv_descrip"));
                 btn_certification.setOnClickListener(new onMyClickListener(certification.getString("value_id")));
                 btn_certifications[j] = btn_certification;
-                btn_certification.setLayoutParams(setLayoutParams(0, Column_Certification, constraintLayout_certification, btn_certifications, j));
-
-                constraintLayout_certification.addView(btn_certification);
+                //btn_certification.setLayoutParams(setLayoutParams(0, Column_Certification, constraintLayout_certification, btn_certifications, j));
+            }
+            for (int n = 0; n < btn_certifications.length; n++) {
+                btn_certifications[n].setLayoutParams(setLayoutParams(Margin_Certification, Column_Certification, constraintLayout_certification, btn_certifications, n));
+                constraintLayout_certification.addView(btn_certifications[n]);
             }
 
         } catch (JSONException e) {
