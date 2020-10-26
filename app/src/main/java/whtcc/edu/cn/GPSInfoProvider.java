@@ -25,7 +25,7 @@ public class GPSInfoProvider extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);   //设置全屏显示
-        text = (TextView) findViewById(R.id.textView3);  //获取显示Location信息的TextView组件
+        //text = (TextView) findViewById(R.id.textView3);  //获取显示Location信息的TextView组件
         //获取系统的LocationManager对象
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 

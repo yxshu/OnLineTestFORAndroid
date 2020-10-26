@@ -23,6 +23,7 @@
         android:padding="16dp"
         android:text="@string/position"
         android:layout_marginLeft="-26dp"
+        android:singleLine="true"
         android:background="@color/positionbackground" />
 
 </LinearLayout>

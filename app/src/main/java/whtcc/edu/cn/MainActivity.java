@@ -43,13 +43,21 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.setMargins(margin, margin, margin, margin);
         if (i % column == 0) {//第一列
             layoutParams.startToStart = parent.getId();
-            layoutParams.endToStart = views[i + 1].getId();
+            if (i < views.length - 1) {
+                layoutParams.endToStart = views[i + 1].getId();
+            } else {//最后一列没有填满，填充整个行
+                layoutParams.endToEnd = parent.getId();
+            }
         } else if (i % column == column - 1) {//最后一列
             layoutParams.endToEnd = parent.getId();
             layoutParams.startToEnd = views[i - 1].getId();
         } else {//其他列
             layoutParams.startToEnd = views[i - 1].getId();
-            layoutParams.endToStart = views[i + 1].getId();
+            if (i < views.length - 1) {
+                layoutParams.endToStart = views[i + 1].getId();
+            } else {//最后一列没有填满，填充整个行
+                layoutParams.endToEnd = parent.getId();
+            }
         }
         if (i / column == 0) {//第一行
             layoutParams.topToTop = parent.getId();
