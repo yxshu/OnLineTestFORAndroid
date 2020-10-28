@@ -33,7 +33,7 @@ public class Welcom extends AppCompatActivity {
         } else {
             handler.sendEmptyMessageDelayed(GO_GUIDE, TIME);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("isFirstIn", false);
+            editor.putBoolean("isFirstIn", true);//这里是需要改的
             editor.apply();
         }
     }
