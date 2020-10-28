@@ -1,4 +1,4 @@
-<resources >
+<resources>
     <string name="app_name">海员通</string>
     <string name="url">https://www.baidu.com</string>
     <string name="appConfig">assets/appConfig.properties</string>
@@ -54,4 +54,5 @@
     <string name="currentposition">currentposition</string>
     <string name="currenttime">2020年10月16日</string>
     <string name="dafaultGPSmessage">没有获取到GPS信息</string>
+    <string name="copyright">© 武汉交通职业学院</string>
 </resources>

@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class PropertiesUtil {
 
-    private final String properiesName;
+    private String properiesName;
     private Properties properties;
 
     public PropertiesUtil(String fileName, Context context) {

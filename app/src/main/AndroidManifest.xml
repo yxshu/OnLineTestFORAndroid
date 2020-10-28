@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".Welcom"
             android:theme="@style/MyAppCompatFullScreem">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +24,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Guide"
+            android:theme="@style/MyAppCompatFullScreem" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/MyAppCompatFullScreem" />
+        <activity
             android:name=".CatalogActivity"
-            android:theme="@style/MyAppCompatFullScreem"></activity>
+            android:theme="@style/MyAppCompatFullScreem" />
     </application>
 
 </manifest>
-
