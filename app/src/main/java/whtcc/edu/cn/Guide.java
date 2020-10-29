@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewOutlineProvider;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -16,6 +15,7 @@ import java.util.List;
 
 /*
  * https://www.cnblogs.com/changchou/p/6209687.html
+ * https://www.cnblogs.com/rwxwsblog/p/4913737.html
  * Android引导页面
  * */
 
@@ -26,7 +26,7 @@ public class Guide extends AppCompatActivity implements ViewPager.OnPageChangeLi
             R.layout.guid_view2, R.layout.guid_view3, R.layout.guid_view4};
     private ViewPager viewPager;
     private viewPageAdapter adapter;//适配器
-    private List<View> views;//viewpager里面的视图
+    //private List<View> views;//viewpager里面的视图
     private ImageView[] dots;//底部的小点图片
     private int[] ids = {R.id.iv1, R.id.iv2, R.id.iv3, R.id.iv4};//viewpager里面视图的ID
     private Button btnStart;//进入主页的按钮
@@ -44,7 +44,7 @@ public class Guide extends AppCompatActivity implements ViewPager.OnPageChangeLi
 
     private void initViews() {
         LayoutInflater inflater = LayoutInflater.from(this);//取得当前布局
-        views = new ArrayList<>();
+        List<View> views = new ArrayList<>();
         // 初始化引导页视图列表
         for (int i = 0; i < pics.length; i++) {
             View view = LayoutInflater.from(this).inflate(pics[i], null);
@@ -132,6 +132,4 @@ public class Guide extends AppCompatActivity implements ViewPager.OnPageChangeLi
         setCurrentView(position);
         setCurrentDot(position);
     }
-
-
 }
