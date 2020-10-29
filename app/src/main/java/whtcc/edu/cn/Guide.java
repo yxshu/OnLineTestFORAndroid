@@ -22,13 +22,13 @@ import java.util.List;
 public class Guide extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
 
     // 引导页图片资源
-    private static final int[] pics = {R.layout.guid_view1,
-            R.layout.guid_view2, R.layout.guid_view3, R.layout.guid_view4};
+    private static final int[] pics = {R.drawable.pic1,
+            R.drawable.pic2,
+            R.drawable.pic3,
+            R.drawable.pic4};
     private ViewPager viewPager;
     private viewPageAdapter adapter;//适配器
-    //private List<View> views;//viewpager里面的视图
     private ImageView[] dots;//底部的小点图片
-    private int[] ids = {R.id.iv1, R.id.iv2, R.id.iv3, R.id.iv4};//viewpager里面视图的ID
     private Button btnStart;//进入主页的按钮
     //记录当前选中位置
     private int currentIndex;
