@@ -3,6 +3,7 @@ package whtcc.edu.cn;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -11,10 +12,10 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.List;
 
 public class viewPageAdapter extends PagerAdapter {
-    private List<View> views;
+    private List<ImageView> views;
     private Context context;
 
-    public viewPageAdapter(List<View> views, Context context) {
+    public viewPageAdapter(List<ImageView> views, Context context) {
         this.views = views;
         this.context = context;
     }
