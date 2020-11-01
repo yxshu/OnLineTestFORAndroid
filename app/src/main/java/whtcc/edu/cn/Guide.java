@@ -1,6 +1,7 @@
 package whtcc.edu.cn;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,10 +28,10 @@ import java.util.List;
 public class Guide extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
 
     // 引导页图片资源
-    private static final int[] pics = {R.drawable.pic1,
-            R.drawable.pic2,
-            R.drawable.pic3,
-            R.drawable.pic4};
+    private static final int[] viewsID = {R.layout.activity_guide_view1,
+            R.layout.activity_guide_view2,
+            R.layout.activity_guide_view3,
+            R.layout.activity_guide_view4};
     private ViewPager viewPager;
     private viewPageAdapter adapter;//适配器
     //记录当前选中位置
@@ -49,29 +50,31 @@ public class Guide extends AppCompatActivity implements ViewPager.OnPageChangeLi
 
 
     private void initViews() {
-        List<ImageView> imageViews = new ArrayList<>();
-        for (int i : pics) {
-            ImageView iv = new ImageView(this);
-            iv.setBackgroundResource(i);
-            imageViews.add(iv);
-            if (i == R.drawable.pic4) {
-                iv.setOnClickListener(this::onClick);
+        List<View> Views = new ArrayList<>();
+        LayoutInflater inflater = LayoutInflater.from(this);
+        for (int i : viewsID) {
+            View view = inflater.inflate(i, null);
+            Views.add(view);
+            if (i == R.layout.activity_guide_view4) {
+                Button btnStart = (Button) view.findViewById(R.id.enter);
+                btnStart.setTag("enter");
+                btnStart.setOnClickListener(this::onClick);
             }
             ImageView point = new ImageView(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(100, 15);
             params.rightMargin = 20;
             params.bottomMargin = 10;
             point.setLayoutParams(params);
-            if (i == R.drawable.pic1) {
-                point.setBackgroundResource(R.drawable.point_bg_focus);
+            if (i == R.layout.activity_guide_view1) {
+                point.setBackgroundColor(Color.RED);
                 point.setEnabled(true);
             } else {
-                point.setBackgroundResource(R.drawable.poing_bg);
+                point.setBackgroundColor(Color.GRAY);
                 point.setEnabled(false);
             }
             point_group.addView(point);
         }
-        adapter = new viewPageAdapter(imageViews, this);
+        adapter = new viewPageAdapter(Views, this);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(this);
     }
@@ -100,12 +103,12 @@ public class Guide extends AppCompatActivity implements ViewPager.OnPageChangeLi
                 break;
             case 2:
                 currentIndex = viewPager.getCurrentItem();
-                for (int i = 0; i < pics.length; i++) {
+                for (int i = 0; i < viewsID.length; i++) {
                     if (i == currentIndex) {
-                        point_group.getChildAt(i).setBackgroundResource(R.drawable.point_bg_focus);
+                        point_group.getChildAt(i).setBackgroundColor(Color.RED);
                         point_group.getChildAt(i).setEnabled(true);
                     } else {
-                        point_group.getChildAt(i).setBackgroundResource(R.drawable.poing_bg);
+                        point_group.getChildAt(i).setBackgroundColor(Color.GRAY);
                         point_group.getChildAt(i).setEnabled(false);
                     }
                 }

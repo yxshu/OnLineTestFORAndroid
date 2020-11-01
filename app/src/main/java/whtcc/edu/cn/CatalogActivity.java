@@ -2,7 +2,10 @@ package whtcc.edu.cn;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +16,7 @@ import org.json.JSONObject;
 public class CatalogActivity extends AppCompatActivity {
 
     // private static final String TAG = CatalogActivity.class.getSimpleName();
-    private static final String JsonQuestion = "{\"QuestionId\":2816,\"QuestionTitle\":\"你船在分道通航制区域的通航分道内遇到另一机动船，且只能见到他船的尾灯并赶上他船，此时从安全角度考虑你船应_______。\",\"AnswerA\":\"从他船的右舷追越，并让清他船\",\"AnswerB\":\"保速保向\",\"AnswerC\":\"从他船的左舷追越，并让清他船\",\"AnswerD\":\"根据需要,尽量减小转向的角度，以避免航程的损失\",\"CorrectAnswer\":3,\"Explain\":\"从他船左舷追越是良好船艺（不会造成被误认为交叉相遇局面的可能）。\",\"ImageAddress\":\"\",\"DifficultyId\":1,\"UserId\":1,\"UpLoadTime\":\"\\/Date(1508478079000)\\/\",\"VerifyTimes\":0,\"IsVerified\":false,\"IsDelte\":false,\"IsSupported\":0,\"IsDeSupported\":0,\"PaperCodeId\":5,\"TextBookId\":10,\"ChapterId\":58,\"PastExamPaperId\":null,\"PastExamQuestionId\":null,\"Remark\":\"\"}";
+    private static final String JsonQuestion = "{\"QuestionId\":2816,\"QuestionTitle\":\"你船在分道航制区域的通航分道内遇到另一机动船，且只能见到他船的尾灯并赶上他船，此时从安全角度考虑你船应_______。\",\"AnswerA\":\"从他船的右舷追越，并让清他船\",\"AnswerB\":\"保速保向\",\"AnswerC\":\"从他船的左舷追越，并让清他船\",\"AnswerD\":\"根据需要,尽量减小转向的角度，以避免航程的损失\",\"CorrectAnswer\":3,\"Explain\":\"从他船左舷追越是良好船艺（不会造成被误认为交叉相遇局面的可能）。\",\"ImageAddress\":\"\",\"DifficultyId\":1,\"UserId\":1,\"UpLoadTime\":\"\\/Date(1508478079000)\\/\",\"VerifyTimes\":0,\"IsVerified\":false,\"IsDelte\":false,\"IsSupported\":0,\"IsDeSupported\":0,\"PaperCodeId\":5,\"TextBookId\":10,\"ChapterId\":58,\"PastExamPaperId\":null,\"PastExamQuestionId\":null,\"Remark\":\"\"}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +34,12 @@ public class CatalogActivity extends AppCompatActivity {
             tv2.setText(R.string.error);
             e.printStackTrace();
         }
+        Button button = findViewById(R.id.submit);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), R.string.app_name, 1000).show();
+            }
+        });
     }
 }

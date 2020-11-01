@@ -12,10 +12,10 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.List;
 
 public class viewPageAdapter extends PagerAdapter {
-    private List<ImageView> views;
+    private List<View> views;
     private Context context;
 
-    public viewPageAdapter(List<ImageView> views, Context context) {
+    public viewPageAdapter(List<View> views, Context context) {
         this.views = views;
         this.context = context;
     }
