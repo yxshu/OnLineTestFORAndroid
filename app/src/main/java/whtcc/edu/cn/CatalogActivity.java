@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,8 @@ public class CatalogActivity extends AppCompatActivity {
     String server;
     myHandler myhandler = new myHandler(this);
     private TextView tv2;
+    private Button btnGetQuestion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,12 @@ public class CatalogActivity extends AppCompatActivity {
         tv.setText(subject);
         tv2.setText(R.string.loading);
         server = new PropertiesUtil("AppConfig", getApplicationContext()).readProperty("serverURL");
-        getQuestionByRand();
+        btnGetQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getQuestionByRand();
+            }
+        });
     }
 
     //https://www.cnblogs.com/zhuyeshen/p/11429576.html HttpUrlConnection 基础使用
