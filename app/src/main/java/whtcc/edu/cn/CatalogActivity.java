@@ -1,35 +1,56 @@
 package whtcc.edu.cn;
 
 import android.content.Intent;
+import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alibaba.fastjson.JSON;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
+import whtcc.edu.cn.Models.PaperCode;
+import whtcc.edu.cn.Models.Question;
+import whtcc.edu.cn.Models.User;
 import whtcc.edu.cn.Util.PropertiesUtil;
 
 //https://www.cnblogs.com/panhouye/p/6494753.html  Android中Handler使用浅析
 
 public class CatalogActivity extends AppCompatActivity {
-    private static final int Question = 0x1;
+    private static final int QuestionFlag = 0x1;
     String server;
-    myHandler myhandler = new myHandler(this);
-    private TextView tv2;
-    private Button btnGetQuestion;
-
+    LinearLayout linearLayout;
+    TextView tv2;
+    private final Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case QuestionFlag:
+                    dealMSG(msg);
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,49 +58,47 @@ public class CatalogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_catalog);
         Intent intent = getIntent();
         String subject = intent.getStringExtra("subject");
-        TextView tv = findViewById(R.id.textView);
-        tv2 = findViewById(R.id.textView2);
-        tv.setText(subject);
-        tv2.setText(R.string.loading);
+        ((TextView) findViewById(R.id.textView)).setText(subject);
         server = new PropertiesUtil("AppConfig", getApplicationContext()).readProperty("serverURL");
+        Button btnGetQuestion = findViewById(R.id.getQuestoin);
+        tv2 = findViewById(R.id.textView2);
         btnGetQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getQuestionByRand();
+                new getQuestonThread().start();
             }
         });
     }
 
-    //https://www.cnblogs.com/zhuyeshen/p/11429576.html HttpUrlConnection 基础使用
-    public void getQuestionByRand() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Message message = new Message();
-                message.what = Question;
-                try {
-                    URL url = new URL(server + "/ashx/getQuestionbyrand.ashx");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    conn.setConnectTimeout(5 * 1000);
-                    conn.connect();
-                    InputStream inputStream = conn.getInputStream();
-                    byte[] data = new byte[1024];
-                    int length = 0;
-                    StringBuilder stringBuffer = new StringBuilder();
-                    while ((length = inputStream.read(data)) != -1) {
-                        String s = new String(data, Charset.forName("UTF-8"));
-                        stringBuffer.append(s);
-                    }
-                    message.obj = stringBuffer.toString();
-                    myhandler.handleMessage(message);
-                    inputStream.close();
-                    conn.disconnect();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+    private void dealMSG(Message message) {
+        try {
+            JSONArray jsonArray = new JSONArray(message.obj.toString());
+            Question question = new Question();
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+            question.setQuestionId(jsonObject.getInt("QuestionId"));
+            question.setQuestionTitle(jsonObject.getString("QuestionTitle"));
+            question.setAnswerA(jsonObject.getString("AnswerA"));
+            question.setAnswerB(jsonObject.getString("AnswerB"));
+            question.setAnswerC(jsonObject.getString("AnswerC"));
+            question.setAnswerD(jsonObject.getString("AnswerD"));
+            question.setCorrectAnswer(jsonObject.getInt("CorrectAnswer"));
+            question.setExplain(jsonObject.getString("Explain"));
+//           question.setImageAddress(jsonObject.getString(""));
+//            question.setDifficultyId(jsonObject.getInt(""));
+//            question.setUserId(jsonObject.getInt(""));
+//            //question.setUpLoadTime(Date.jsonObject.getString("")));
+//            question.setVerifyTimes(jsonObject.getInt(""));
+//            //question.isVerified(jsonObject.getInt(""));
+////            question.isDelte(jsonObject.getString(""));
+//            question.getIsSupported(jsonObject.getInt(""));
+//            question.setIsDeSupported(jsonObject.getInt(""));
+//            question.setPaperCodeId(jsonObject.getInt(""));
+//            question.setTextBookId(jsonObject.getInt(""));
+//            question.setChapterId(jsonObject.getInt(""));
+            tv2.setText(question.getQuestionTitle());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     //防止Handler引起内存泄漏
@@ -87,29 +106,36 @@ public class CatalogActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        myhandler.removeCallbacksAndMessages(null);
+        handler.removeCallbacksAndMessages(null);
         Log.i("tag", "destory");
     }
 
-    //Handler静态内部类，静态类不持有外部类的对象，所以Activi可以被随意回收
-    //此处使用了弱引用WeakReference，也就是说当在内存不足时，系统会销毁弱/回收引用引用的对象，从而达到优化内存的目的
-    private static class myHandler extends Handler {
-        //弱引用
-        WeakReference<CatalogActivity> weakReference;
-
-        public myHandler(CatalogActivity activity) {
-            weakReference = new WeakReference<CatalogActivity>(activity);
-        }
-
+    //https://www.cnblogs.com/zhuyeshen/p/11429576.html HttpUrlConnection 基础使用
+    private class getQuestonThread extends Thread {
         @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-            CatalogActivity activity = weakReference.get();
-            if (activity != null) {
-                switch (msg.what) {
-                    case Question:
-                        activity.tv2.setText(msg.obj.toString());
+        public void run() {
+            super.run();
+            Message message = new Message();
+            message.what = QuestionFlag;
+            try {
+                URL url = new URL(server + "/ashx/getQuestionbyrand.ashx");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setConnectTimeout(5 * 1000);
+                conn.connect();
+                InputStream inputStream = conn.getInputStream();
+                byte[] data = new byte[1024];
+                StringBuilder stringBuffer = new StringBuilder();
+                while (inputStream.read(data) != -1) {
+                    String s = new String(data, StandardCharsets.UTF_8);
+                    stringBuffer.append(s);
                 }
+                message.obj = stringBuffer.toString();
+                inputStream.close();
+                conn.disconnect();
+                handler.sendMessage(message);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

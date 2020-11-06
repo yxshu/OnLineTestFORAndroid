@@ -3,7 +3,7 @@
 \u7B2C\u4E00\uFF1A\u8981\u5728values/ids\u4E0B\u6DFB\u52A0id;
 \u7B2C\u4E8C\uFF1A\u8981\u5728drawable\u4E0B\u6DFB\u52A0\u56FE\u6807
 >
-serverURL="61.183.89.207"
+serverURL=http://61.183.89.207
 Column={"Qualification":"3","Certificate":"3"}
 margin={"Qualification":"8","Certificate":"10"}
 Qualification=[\

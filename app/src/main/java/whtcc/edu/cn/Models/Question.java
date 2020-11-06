@@ -1,215 +1,218 @@
 package whtcc.edu.cn.Models;
 
+import android.hardware.camera2.params.BlackLevelPattern;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
 public class Question {
 
-    public int get_questionid() {
-        return _questionid;
+
+    private int QuestionId;
+    private String QuestionTitle;
+    private String AnswerA;
+    private String AnswerB;
+    private String AnswerC;
+    private String AnswerD;
+    private int CorrectAnswer;
+    private String Explain;
+    private String ImageAddress;
+    private int DifficultyId;
+    private int UserId;
+    private Date UpLoadTime;
+    private int VerifyTimes;
+    private boolean IsVerified;
+    private boolean IsDelte;
+    private int IsSupported;
+    private int IsDeSupported;
+    private int PaperCodeId;
+    private int TextBookId;
+    private int ChapterId;
+    private int PastExamPaperId;
+    private int PastExamQuestionId;
+    private String Remark;
+
+    public int getQuestionId() {
+        return QuestionId;
     }
 
-    public void set_questionid(int _questionid) {
-        this._questionid = _questionid;
+    public void setQuestionId(int questionId) {
+        QuestionId = questionId;
     }
 
-    public String get_questiontitle() {
-        return _questiontitle;
+    public String getQuestionTitle() {
+        return QuestionTitle;
     }
 
-    public void set_questiontitle(String _questiontitle) {
-        this._questiontitle = _questiontitle;
+    public void setQuestionTitle(String questionTitle) {
+        QuestionTitle = questionTitle;
     }
 
-    public String get_answera() {
-        return _answera;
+    public String getAnswerA() {
+        return AnswerA;
     }
 
-    public void set_answera(String _answera) {
-        this._answera = _answera;
+    public void setAnswerA(String answerA) {
+        AnswerA = answerA;
     }
 
-    public String get_answerb() {
-        return _answerb;
+    public String getAnswerB() {
+        return AnswerB;
     }
 
-    public void set_answerb(String _answerb) {
-        this._answerb = _answerb;
+    public void setAnswerB(String answerB) {
+        AnswerB = answerB;
     }
 
-    public String get_answerc() {
-        return _answerc;
+    public String getAnswerC() {
+        return AnswerC;
     }
 
-    public void set_answerc(String _answerc) {
-        this._answerc = _answerc;
+    public void setAnswerC(String answerC) {
+        AnswerC = answerC;
     }
 
-    public String get_answerd() {
-        return _answerd;
+    public String getAnswerD() {
+        return AnswerD;
     }
 
-    public void set_answerd(String _answerd) {
-        this._answerd = _answerd;
+    public void setAnswerD(String answerD) {
+        AnswerD = answerD;
     }
 
-    public int get_correctanswer() {
-        return _correctanswer;
+    public int getCorrectAnswer() {
+        return CorrectAnswer;
     }
 
-    public void set_correctanswer(int _correctanswer) {
-        this._correctanswer = _correctanswer;
+    public void setCorrectAnswer(int correctAnswer) {
+        CorrectAnswer = correctAnswer;
     }
 
-    public String get_explain() {
-        return _explain;
+    public String getExplain() {
+        return Explain;
     }
 
-    public void set_explain(String _explain) {
-        this._explain = _explain;
+    public void setExplain(String explain) {
+        Explain = explain;
     }
 
-    public String get_imageaddress() {
-        return _imageaddress;
+    public String getImageAddress() {
+        return ImageAddress;
     }
 
-    public void set_imageaddress(String _imageaddress) {
-        this._imageaddress = _imageaddress;
+    public void setImageAddress(String imageAddress) {
+        ImageAddress = imageAddress;
     }
 
-    public int get_difficultyid() {
-        return _difficultyid;
+    public int getDifficultyId() {
+        return DifficultyId;
     }
 
-    public void set_difficultyid(int _difficultyid) {
-        this._difficultyid = _difficultyid;
+    public void setDifficultyId(int difficultyId) {
+        DifficultyId = difficultyId;
     }
 
-    public int get_userid() {
-        return _userid;
+    public int getUserId() {
+        return UserId;
     }
 
-    public void set_userid(int _userid) {
-        this._userid = _userid;
+    public void setUserId(int userId) {
+        UserId = userId;
     }
 
-    public Timestamp get_uploadtime() {
-        return _uploadtime;
+    public Date getUpLoadTime() {
+        return UpLoadTime;
     }
 
-    public void set_uploadtime(Timestamp _uploadtime) {
-        this._uploadtime = _uploadtime;
+    public void setUpLoadTime(Date upLoadTime) {
+        UpLoadTime = upLoadTime;
     }
 
-    public int get_verifytimes() {
-        return _verifytimes;
+    public int getVerifyTimes() {
+        return VerifyTimes;
     }
 
-    public void set_verifytimes(int _verifytimes) {
-        this._verifytimes = _verifytimes;
+    public void setVerifyTimes(int verifyTimes) {
+        VerifyTimes = verifyTimes;
     }
 
-    public Boolean get_isverified() {
-        return _isverified;
+    public boolean isVerified() {
+        return IsVerified;
     }
 
-    public void set_isverified(Boolean _isverified) {
-        this._isverified = _isverified;
+    public void setVerified(boolean verified) {
+        IsVerified = verified;
     }
 
-    public Boolean get_isdelte() {
-        return _isdelte;
+    public boolean isDelte() {
+        return IsDelte;
     }
 
-    public void set_isdelte(Boolean _isdelte) {
-        this._isdelte = _isdelte;
+    public void setDelte(boolean delte) {
+        IsDelte = delte;
     }
 
-    public int get_issupported() {
-        return _issupported;
+    public int getIsSupported(int anInt) {
+        return IsSupported;
     }
 
-    public void set_issupported(int _issupported) {
-        this._issupported = _issupported;
+    public void setIsSupported(int isSupported) {
+        IsSupported = isSupported;
     }
 
-    public int get_isdesupported() {
-        return _isdesupported;
+    public int getIsDeSupported() {
+        return IsDeSupported;
     }
 
-    public void set_isdesupported(int _isdesupported) {
-        this._isdesupported = _isdesupported;
+    public void setIsDeSupported(int isDeSupported) {
+        IsDeSupported = isDeSupported;
     }
 
-    public int get_papercodeid() {
-        return _papercodeid;
+    public int getPaperCodeId() {
+        return PaperCodeId;
     }
 
-    public void set_papercodeid(int _papercodeid) {
-        this._papercodeid = _papercodeid;
+    public void setPaperCodeId(int paperCodeId) {
+        PaperCodeId = paperCodeId;
     }
 
-    public int get_textbookid() {
-        return _textbookid;
+    public int getTextBookId() {
+        return TextBookId;
     }
 
-    public void set_textbookid(int _textbookid) {
-        this._textbookid = _textbookid;
+    public void setTextBookId(int textBookId) {
+        TextBookId = textBookId;
     }
 
-    public int get_chapterid() {
-        return _chapterid;
+    public int getChapterId() {
+        return ChapterId;
     }
 
-    public void set_chapterid(int _chapterid) {
-        this._chapterid = _chapterid;
+    public void setChapterId(int chapterId) {
+        ChapterId = chapterId;
     }
 
-    public int get_pastexampaperid() {
-        return _pastexampaperid;
+    public int getPastExamPaperId() {
+        return PastExamPaperId;
     }
 
-    public void set_pastexampaperid(int _pastexampaperid) {
-        this._pastexampaperid = _pastexampaperid;
+    public void setPastExamPaperId(int pastExamPaperId) {
+        PastExamPaperId = pastExamPaperId;
     }
 
-    public int get_pastexamquestionid() {
-        return _pastexamquestionid;
+    public int getPastExamQuestionId() {
+        return PastExamQuestionId;
     }
 
-    public void set_pastexamquestionid(int _pastexamquestionid) {
-        this._pastexamquestionid = _pastexamquestionid;
+    public void setPastExamQuestionId(int pastExamQuestionId) {
+        PastExamQuestionId = pastExamQuestionId;
     }
 
-    public String get_remark() {
-        return _remark;
+    public String getRemark() {
+        return Remark;
     }
 
-    public void set_remark(String _remark) {
-        this._remark = _remark;
+    public void setRemark(String remark) {
+        Remark = remark;
     }
-
-    private int _questionid;
-    private String _questiontitle;
-    private String _answera;
-    private String _answerb;
-    private String _answerc;
-    private String _answerd;
-    private int _correctanswer;
-    private String _explain;
-    private String _imageaddress = "Default.jpg";
-    private int _difficultyid;
-    private int _userid;
-    private Timestamp _uploadtime = new Timestamp(new Date().getTime());
-    private int _verifytimes = 0;
-    private Boolean _isverified = false;
-    private Boolean _isdelte = false;
-    private int _issupported = 0;
-    private int _isdesupported = 0;
-    private int _papercodeid;
-    private int _textbookid;
-    private int _chapterid;
-    private int _pastexampaperid;
-    private int _pastexamquestionid;
-    private String _remark;
 }
