@@ -1,7 +1,6 @@
 package whtcc.edu.cn;
 
 import android.content.Intent;
-import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,7 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,39 +20,62 @@ import com.alibaba.fastjson.JSON;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import whtcc.edu.cn.Models.Chapter;
+import whtcc.edu.cn.Models.Difficulty;
 import whtcc.edu.cn.Models.PaperCode;
+import whtcc.edu.cn.Models.PastExamPaper;
 import whtcc.edu.cn.Models.Question;
+import whtcc.edu.cn.Models.Subject;
+import whtcc.edu.cn.Models.TextBook;
 import whtcc.edu.cn.Models.User;
+import whtcc.edu.cn.Models.UserGroup;
 import whtcc.edu.cn.Util.PropertiesUtil;
 
 //https://www.cnblogs.com/panhouye/p/6494753.html  Android中Handler使用浅析
 
+/**
+ *
+ */
 public class CatalogActivity extends AppCompatActivity {
     private static final int QuestionFlag = 0x1;
     String server;
     LinearLayout linearLayout;
-    TextView tv2;
+    TextView TXtitle, TXsubject, TXanswer;
+    RadioGroup RGchoose;
+    RadioButton answerA, answerB, answerC, answerD;
     private final Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case QuestionFlag:
-                    dealMSG(msg);
+                    List<Object> list = dealMSG(msg);
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getClass().equals(Question.class)) {
+                            Question question = (Question) list.get(i);
+                            TXtitle.setText(question.getQuestionTitle());
+                            answerA.setText(question.getAnswerA());
+                            answerB.setText(question.getAnswerB());
+                            answerC.setText(question.getAnswerC());
+                            answerD.setText(question.getAnswerD());
+                            TXanswer.setText(String.valueOf(question.getCorrectAnswer()));
+                        }
+                    }
                     break;
             }
         }
     };
+    Button BTNnext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,47 +83,70 @@ public class CatalogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_catalog);
         Intent intent = getIntent();
         String subject = intent.getStringExtra("subject");
-        ((TextView) findViewById(R.id.textView)).setText(subject);
+
+        TXsubject = findViewById(R.id.subject);
+        TXtitle = findViewById(R.id.title);
+        TXanswer = findViewById(R.id.answer);
+        TXsubject.setText(subject);
+        RGchoose = findViewById(R.id.choose);
+        BTNnext = findViewById(R.id.next);
+        answerA = findViewById(R.id.answerA);
+        answerB = findViewById(R.id.answerB);
+        answerC = findViewById(R.id.answerC);
+        answerD = findViewById(R.id.answerD);
+
         server = new PropertiesUtil("AppConfig", getApplicationContext()).readProperty("serverURL");
-        Button btnGetQuestion = findViewById(R.id.getQuestoin);
-        tv2 = findViewById(R.id.textView2);
-        btnGetQuestion.setOnClickListener(new View.OnClickListener() {
+        RGchoose.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Toast toast = Toast.makeText(getApplicationContext(), String.valueOf(checkedId), Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+        BTNnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new getQuestonThread().start();
             }
         });
+        BTNnext.performClick();
     }
 
-    private void dealMSG(Message message) {
+    /**
+     * 返回一个对象数组6+3，包括：question,difficulty,users,usergroup（根据user.usergroupID获取）,papercodes,subject(根据papercodes.subjectID获取),可能有textbook,chapter,pastexampaper
+     *
+     * @param message
+     * @return
+     */
+
+    private List<Object> dealMSG(Message message) {
+        List<Object> list = new ArrayList();
+        JSONArray jsonArray = null;
         try {
-            JSONArray jsonArray = new JSONArray(message.obj.toString());
-            Question question = new Question();
-            JSONObject jsonObject = jsonArray.getJSONObject(0);
-            question.setQuestionId(jsonObject.getInt("QuestionId"));
-            question.setQuestionTitle(jsonObject.getString("QuestionTitle"));
-            question.setAnswerA(jsonObject.getString("AnswerA"));
-            question.setAnswerB(jsonObject.getString("AnswerB"));
-            question.setAnswerC(jsonObject.getString("AnswerC"));
-            question.setAnswerD(jsonObject.getString("AnswerD"));
-            question.setCorrectAnswer(jsonObject.getInt("CorrectAnswer"));
-            question.setExplain(jsonObject.getString("Explain"));
-//           question.setImageAddress(jsonObject.getString(""));
-//            question.setDifficultyId(jsonObject.getInt(""));
-//            question.setUserId(jsonObject.getInt(""));
-//            //question.setUpLoadTime(Date.jsonObject.getString("")));
-//            question.setVerifyTimes(jsonObject.getInt(""));
-//            //question.isVerified(jsonObject.getInt(""));
-////            question.isDelte(jsonObject.getString(""));
-//            question.getIsSupported(jsonObject.getInt(""));
-//            question.setIsDeSupported(jsonObject.getInt(""));
-//            question.setPaperCodeId(jsonObject.getInt(""));
-//            question.setTextBookId(jsonObject.getInt(""));
-//            question.setChapterId(jsonObject.getInt(""));
-            tv2.setText(question.getQuestionTitle());
+            jsonArray = new JSONArray(message.obj.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Type[] types = new Type[]{
+                Question.class,
+                Difficulty.class,
+                User.class,
+                UserGroup.class,
+                PaperCode.class,
+                Subject.class,
+                TextBook.class,
+                Chapter.class,
+                PastExamPaper.class
+        };
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                Object obj = JSON.parseObject(String.valueOf(jsonArray.get(i)), types[i]);
+                list.add(obj);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 
     //防止Handler引起内存泄漏
