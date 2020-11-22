@@ -25,10 +25,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import whtcc.edu.cn.Models.Chapter;
 import whtcc.edu.cn.Models.Difficulty;
@@ -48,6 +50,7 @@ import whtcc.edu.cn.Util.PropertiesUtil;
  */
 public class CatalogActivity extends AppCompatActivity {
     private static final int QuestionFlag = 0x1;
+    private static final int SocketTimeOutFlag = 0x2;
     String server;
     LinearLayout linearLayout;
     TextView TXtitle, TXsubject, TXanswer;
@@ -58,7 +61,11 @@ public class CatalogActivity extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-                case QuestionFlag:
+                case SocketTimeOutFlag: {
+                    Toast.makeText(getApplicationContext(), "Socket Time Out", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case QuestionFlag: {
                     List<Object> list = dealMSG(msg);
                     for (int i = 0; i < list.size(); i++) {
                         if (list.get(i).getClass().equals(Question.class)) {
@@ -72,6 +79,7 @@ public class CatalogActivity extends AppCompatActivity {
                         }
                     }
                     break;
+                }
             }
         }
     };
@@ -164,12 +172,13 @@ public class CatalogActivity extends AppCompatActivity {
         public void run() {
             super.run();
             Message message = new Message();
-            message.what = QuestionFlag;
+            //message.what = QuestionFlag;
             try {
                 URL url = new URL(server + "/ashx/getQuestionbyrand.ashx");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setConnectTimeout(5 * 1000);
+                conn.setReadTimeout(5 * 1000);
                 conn.connect();
                 InputStream inputStream = conn.getInputStream();
                 byte[] data = new byte[1024];
@@ -178,9 +187,14 @@ public class CatalogActivity extends AppCompatActivity {
                     String s = new String(data, StandardCharsets.UTF_8);
                     stringBuffer.append(s);
                 }
+                message.what = QuestionFlag;
                 message.obj = stringBuffer.toString();
                 inputStream.close();
                 conn.disconnect();
+                handler.sendMessage(message);
+            } catch (SocketTimeoutException e) {
+                message.what = SocketTimeOutFlag;
+                message.obj = null;
                 handler.sendMessage(message);
             } catch (IOException e) {
                 e.printStackTrace();
