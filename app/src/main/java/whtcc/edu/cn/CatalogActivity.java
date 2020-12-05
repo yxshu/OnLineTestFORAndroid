@@ -127,6 +127,7 @@ public class CatalogActivity extends AppCompatActivity {
      * @return
      */
 
+
     private List<Object> dealMSG(Message message) {
         List<Object> list = new ArrayList();
         JSONArray jsonArray = null;
